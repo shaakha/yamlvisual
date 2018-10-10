@@ -1,0 +1,1 @@
+{"todo": {"colors": {"highlight": {"back": "orange", "fore": "black"}, "checked": "gray"}, "position": {"width": 1, "top": 2, "left": 2, "height": 2}, "checkedIcon": "X", "refreshInterval": 3600, "enabled": true, "filename": "todo.yml"}}
