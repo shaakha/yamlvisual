@@ -1,0 +1,15 @@
+todo:
+  checkedIcon: "X"
+  colors:
+    checked: gray
+    highlight:
+      fore: "black"
+      back: "orange"
+  enabled: true
+  filename: "todo.yml"
+  position:
+    top: 2
+    left: 2
+    height: 2
+    width: 1
+  refreshInterval: 3600
