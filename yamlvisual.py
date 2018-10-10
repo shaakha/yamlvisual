@@ -9,6 +9,8 @@ import yaml
 import sys
 import os
 
+from settings import config
+
 
 # https://stackoverflow.com/a/16029908/1079836
 def mkdirp(path):
@@ -43,17 +45,17 @@ class yamlvisual:
   def __init__(self, filepath):
     if os.path.isfile(filepath):
       self.filepath = filepath
-      self.verbose = True
-      self.isqlysyaml = True
-      self.groupchildren = True
-      self.collapsecount = 25
-      self.saveyamldict = True
-      self.content = None
-      self.yamldict = None
-      self.d3dict = None
-      self.error = None
-      self.dummyroot = False
-      self.modecompact = True
+      self.verbose = config["verbose"]
+      self.isqlysyaml = config["isqlysyaml"]
+      self.groupchildren = config["groupchildren"]
+      self.collapsecount = config["collapsecount"]
+      self.saveyamldict = config["saveyamldict"]
+      self.content = config["content"]
+      self.yamldict = config["yamldict"]
+      self.d3dict = config["d3dict"]
+      self.error = config["error"]
+      self.dummyroot = config["dummyroot"]
+      self.modecompact = config["modecompact"]
       self.basereportsdir = "%s/reports" % (os.getcwd())
       self.currentreportsdir = "%s/%s" % (self.basereportsdir, self.filepath.split("/")[-1])
       mkdirp(self.currentreportsdir)
@@ -117,12 +119,10 @@ class yamlvisual:
           "children": list(),
           "size": 0
         })
-
         self.create_tree(self.yamldict, self.d3dict["children"], self.d3dict)
         if not self.dummyroot:
           self.d3dict = self.d3dict["children"][0]
         self.d3dict["size"] = len(self.d3dict["children"])
-
         if self.d3dict:
           with open(self.yamld3jsonpath, "w") as fo:
             json.dump(self.d3dict, fo)
